@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
       description: params[:description],
       image_url: params[:image_url],
     )
-    @product.saves
+    @product.save
     render template: "products/show"
   end
 
