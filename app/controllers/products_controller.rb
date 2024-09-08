@@ -16,8 +16,10 @@ class ProductsController < ApplicationController
       description: params[:description],
       image_url: params[:image_url],
     )
-    @product.save
-    render template: "products/show"
+    if @product.save
+      render template: "products/show"
+    else
+      render json: {errors: @product.errors.full_messages}
   end
 
   def update
