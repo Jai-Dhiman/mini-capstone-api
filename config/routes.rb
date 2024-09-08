@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'suppliers/index'
-  get 'suppliers/show'
-  get 'suppliers/create'
-  get 'suppliers/update'
-  get 'suppliers/destroy'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -20,6 +16,15 @@ Rails.application.routes.draw do
 
   delete "/products/:id" => "products#destroy"
 
+  get "/suppliers" => "suppliers#index"
+
+  get "/suppliers/:id" => "suppliers#show"
+
+  post "/suppliers" => "suppliers#create"
+
+  patch "/suppliers/:id" => "suppliers#update"
+
+  delete "/suppliers/:id" => "suppliers#destroy"
   # Defines the root path route ("/")
   # root "posts#index"
 end
