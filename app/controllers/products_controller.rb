@@ -14,6 +14,8 @@ class ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
+      inventory: params[:inventory],
+      supplier_id: params[:supplier_id],
     )
     if @product.save
       render template: "products/show"
@@ -33,7 +35,11 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find_by(id: params[:id])
-    @product.destroy
-    render json: { message: "product has been removed" }
+    if @product
+      @product.destroy
+      render json: { message: "product has been removed" }
+    else
+    render json: { message: "product not found" }, status: :not_found
+    end
   end
 end
