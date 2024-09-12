@@ -5,6 +5,7 @@ class Product < ApplicationRecord
 
   belongs_to :supplier
   has_many :images, dependent: :destroy
+  has_many :orders
 
   def is_discounted?
     price <= 10
