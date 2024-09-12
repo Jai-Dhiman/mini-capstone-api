@@ -7,15 +7,4 @@ class Product < ApplicationRecord
   has_many :images, dependent: :destroy
   has_many :orders
 
-  def is_discounted?
-    price <= 10
-  end
-
-  def tax
-    price * 0.09
-  end
-
-  def total
-    price + (price * 0.09)
-  end
 end
