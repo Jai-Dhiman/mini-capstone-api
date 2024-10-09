@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
-      inventory: params[:inventory],
       supplier_id: params[:supplier_id],
       image_url: params[:image_url]
     )

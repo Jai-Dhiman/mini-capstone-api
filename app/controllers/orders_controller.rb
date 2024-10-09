@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
     @order.calculate_totals(carted_products)
   
     if @order.save
-      carted_products.update_all(status: "purchased", order_id: @order.id)
+      carted_products.update_all(order_id: @order.id)
       render :show
     else
       render json: { errors: @order.errors.full_messages }, status: :unprocessable_entity
