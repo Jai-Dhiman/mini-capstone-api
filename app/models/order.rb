@@ -1,16 +1,16 @@
 class Order < ApplicationRecord
   belongs_to :user
   has_many :carted_products
-  has_many :product, through: :carted_products
-  validates :subtotal, :tax, :total, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  has_many :products, through: :carted_products
 
-  def calculate_totals(carted_products)
-    subtotal = carted_products.sum { |cp| cp.product.price * cp.quantity }
-    tax = subtotal * 0.09
-    total = subtotal + tax
+  def calculate_totals
+    self.subtotal = carted_products.sum { |cp| cp.product.price * cp.quantity }
+    self.tax = subtotal * 0.09
+    self.total = subtotal + tax
+  end
 
-    self.subtotal = subtotal
-    self.tax = tax
-    self.total = total
+  def complete_order
+    calculate_totals
+    carted_products.update_all(status: "purchased")
   end
 end
