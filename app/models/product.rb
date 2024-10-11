@@ -4,7 +4,8 @@ class Product < ApplicationRecord
   has_many :orders, through: :carted_products
   has_many :images, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :inventory, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :description, presence: true
+  validates :supplier, presence: true
 end
